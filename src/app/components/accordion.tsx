@@ -1,9 +1,11 @@
 'use client'
 
+// 型のインポート 型をインポートする場合はimport typeで記述して型だとわかるようにしている
 import type { AccordionType }  from "../page"
 
-export const Accordion = ({flush= true, eventKey, eventName, children, headerTitle}: AccordionType) => {
 
+export const Accordion = ({flush= true, eventKey, eventName, children, headerTitle}: AccordionType) => {
+  // 親で要素をマッピングしているのでコンポーネント側では一つぶんの要素を記述するだけでよくなる
   return (
     <div
       className={`accordion ${flush ? 'accordion-flush' : ''}`}

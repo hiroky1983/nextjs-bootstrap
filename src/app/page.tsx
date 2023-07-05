@@ -5,7 +5,7 @@ import styled from './page.module.css';
 import 'bootstrap/dist/js/bootstrap';
 import { ReactNode } from'react'
 
-
+// 型は親で定義してexportする（使い回す場合は別ファイル管理）
 export type AccordionType = {
   flush?: boolean
   headerTitle: string
@@ -15,6 +15,7 @@ export type AccordionType = {
 }
 
 export default function Home() {
+  // 子コンポーネントに渡すpropsを定義する
   const accordionParams: AccordionType[] = [
     {
       flush: true,
@@ -32,6 +33,7 @@ export default function Home() {
     },
   ]
 
+  // AccordionのHeaderとbodyを削除して配列をmapでまわして短く定義
   return (
     <main className={styled.main}>
       <div className="container">
