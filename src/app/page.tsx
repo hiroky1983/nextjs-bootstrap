@@ -1,43 +1,58 @@
 'use client';
 
-import { useEffect } from 'react';
 import { Accordion } from './components/accordion';
 import styled from './page.module.css';
 import 'bootstrap/dist/js/bootstrap';
+import { ReactNode } from'react'
+
+
+export type AccordionType = {
+  flush?: boolean
+  headerTitle: string
+  eventKey: string
+  eventName: string
+  children: ReactNode
+}
 
 export default function Home() {
+  const accordionParams: AccordionType[] = [
+    {
+      flush: true,
+      headerTitle: "アコーディオン１",
+      eventKey: "0",
+      eventName: "One",
+      children: "テキストテキスト１"
+    },
+    {
+      flush: true,
+      headerTitle: "アコーディオン２",
+      eventKey: "1",
+      eventName: "Two",
+      children: "テキストテキスト２"
+    },
+  ]
+
   return (
     <main className={styled.main}>
       <div className="container">
         <div className="row align-items-start">
           <div className="col">
           <h2 className="pt-3 pb-2 mb-3 border-bottom">コンポーネント化したアコーディオン</h2>
-            <Accordion eventKey="0" eventName="One">
-              <Accordion.Header>アコーディオン１</Accordion.Header>
-              <Accordion.Body>
-                <p>
-                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                </p>
-                <p>
-                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                </p>
-              </Accordion.Body>
-            </Accordion>
-
-            <Accordion eventKey="1" eventName="Two">
-              <Accordion.Header>アコーディオン２</Accordion.Header>
-              <Accordion.Body>
-                <p>
-                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                </p>
-                <p>
-                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                </p>
-                <p>
-                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                </p>
-              </Accordion.Body>
-            </Accordion>
+          {
+            accordionParams.map((e) => (
+              <>
+              <Accordion
+                key={e.eventKey}
+                eventKey={e.eventKey}
+                eventName={e.eventName}
+                flush={e.flush}
+                headerTitle={e.headerTitle}
+                >
+                  {e.children}
+                </Accordion>
+              </>
+            ))
+          }
 
             <h2 className="pt-3 pb-2 mb-3 border-bottom">コンポーネント化しないアコーディオン</h2>
             <div
